@@ -29,11 +29,11 @@ jobs:
             echo "Size of cache dir after install: $(du -sh cache-pip)"
             echo "Cache contents after install: "
             ls -lah cache-pip
-#      - name: inject cache-pip into docker
-#        uses: reproducible-containers/buildkit-cache-dance@v2.1.2
-#        with:
-#          cache-source: cache-pip
-#          cache-target: /root/.cache/pip
+      - name: inject cache-pip into docker
+        uses: reproducible-containers/buildkit-cache-dance@v2.1.2
+        with:
+          cache-source: cache-pip
+          cache-target: /root/.cache/pip
       
       - name: Build and push
         uses: docker/build-push-action@v5
