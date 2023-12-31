@@ -8,10 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-buildx-action@v3
-      - uses: docker/metadata-action@v4
-        id: meta
-        with:
-          images: demo
       - name: Cache cache-pip
         uses: actions/cache@v3
         with:
@@ -41,5 +37,3 @@ jobs:
           context: .
           push: false
           file: Dockerfile
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
