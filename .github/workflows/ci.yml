@@ -17,6 +17,18 @@ jobs:
         with:
           path: cache-pip
           key: cache-pip-demo
+      - name: Output pip cache info
+        uses: gacts/run-and-post-run@7aec950f3b114c4fcf6012070c3709ecff0eb6f8 # v1.4.0
+        continue-on-error: true
+        with:
+          run: |
+            echo "Size of cache dir before install: $(du -sh cache-pip)"
+            echo "Cache contents before install: "
+            ls -lah cache-pip
+          post: |
+            echo "Size of cache dir after install: $(du -sh cache-pip)"
+            echo "Cache contents after install: "
+            ls -lah cache-pip
       - name: inject cache-pip into docker
         uses: reproducible-containers/buildkit-cache-dance@v2.1.2
         with:
