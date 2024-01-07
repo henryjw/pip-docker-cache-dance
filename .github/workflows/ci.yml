@@ -21,7 +21,7 @@ jobs:
 
           accessKey: ${{ env.S3_ACCESS_KEY }}
           secretKey: ${{ secrets.S3_SECRET_KEY }}
-          bucket: actions-cache
+          bucket: actions-cache-poc
           use-fallback: false
       - name: Output pip cache info
         uses: gacts/run-and-post-run@7aec950f3b114c4fcf6012070c3709ecff0eb6f8 # v1.4.0
