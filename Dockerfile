@@ -1,4 +1,3 @@
-
 FROM python:3.8.17-slim-bullseye AS base
 WORKDIR /app
 COPY requirements.txt .
