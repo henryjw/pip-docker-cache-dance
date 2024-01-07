@@ -13,10 +13,16 @@ jobs:
         with:
           images: demo
       - name: Cache cache-pip
-        uses: actions/cache@v3
+        uses: tespkg/actions-cache@adf4e5e57e916ad83e63cc047ce271ef0843a24c
+        continue-on-error: false
         with:
           path: cache-pip
           key: cache-pip-demo
+
+          accessKey: ${{ env.S3_ACCESS_KEY }}
+          secretKey: ${{ secrets.S3_SECRET_KEY }}
+          bucket: actions-cache
+          use-fallback: false
       - name: Output pip cache info
         uses: gacts/run-and-post-run@7aec950f3b114c4fcf6012070c3709ecff0eb6f8 # v1.4.0
         continue-on-error: true
