@@ -14,6 +14,7 @@ jobs:
           images: demo
       - name: Cache cache-pip
         uses: tespkg/actions-cache@adf4e5e57e916ad83e63cc047ce271ef0843a24c
+        id: cache-pip
         continue-on-error: false
         with:
           path: cache-pip
@@ -36,10 +37,12 @@ jobs:
             echo "Cache contents after install: "
             ls -lah cache-pip
       - name: inject cache-pip into docker
-        uses: reproducible-containers/buildkit-cache-dance@v2.1.2
+        uses: henryjw/buildkit-cache-dance@88b6d5ede39db47da3046392562cf0a2e351d51e
         with:
           cache-source: cache-pip
           cache-target: /root/.cache/pip
+          skip-extraction: ${{ steps.cache-pip.outputs.cache-hit }}
+
 
       - name: Build and push
         uses: docker/build-push-action@v5
