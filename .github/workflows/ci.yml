@@ -17,7 +17,7 @@ jobs:
         continue-on-error: false
         with:
           path: cache-pip
-          key: cache-pip-demo-${{ hashFiles('Dockerfile') }}
+          key: dir/cache-pip-demo-${{ hashFiles('Dockerfile') }}
 
           accessKey: ${{ vars.S3_ACCESS_KEY }}
           secretKey: ${{ secrets.S3_SECRET_KEY }}
